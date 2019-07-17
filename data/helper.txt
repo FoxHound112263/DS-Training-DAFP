@@ -3,3 +3,29 @@ install.packages(c("tidyverse","sf","esquisse","pdftools","tm","wordcloud2","tid
 https://github.com/FoxHound112263/DS-Training-DAFP/raw/master/data/homicidios.txt
 
 c("Norte", "Sur", "Sur", "Norte", "Norte", "Sur", "Centro", "Occidente", "Sur", "Sur", "Norte", "Norte", "Norte", "Sur", "Sur","Sur","Sur", "Centro", "Sur", "Sur")
+
+gsub(pattern = "[^[:alnum:][:space:]]", " ", texto_crudo)
+
+preproctext <- function(x){
+  require(magrittr)
+  x[which(is.na(x))] <- ""
+  y <- x %>% 
+    iconv(.,from="utf-8",to="ASCII//TRANSLIT") %>%
+    gsub("[^[:print:]]", " ", .) %>%
+    tolower %>% 
+    gsub("[^[:lower:]^[:space:]]", " ", .) %>%
+    gsub("[[:space:]]{1,}", " ", .) %>%
+    trimws
+  return(y)
+}
+
+ggraph(bigram_graph, layout = "fr") +
+  geom_edge_link(aes(edge_alpha = n), show.legend = F,
+                 arrow = a,linemitre = 8, end_cap = circle(.07, 'inches')) +
+  geom_node_point(color = "firebrick3", size = 5) +
+  geom_node_text(aes(label = name), vjust = 1, hjust = 1) +
+  ggtitle('Red de bigramas más utilizados en CONPES 3920') +
+  #scale_x_continuous(limits = c(0, 10)) +
+  #coord_cartesian(xlim = c(0, 20)) +
+  theme_void() +
+  theme(plot.title=element_text(hjust=0.5))
