@@ -1,1 +1,5 @@
+install.packages(c("tidyverse","sf","esquisse","pdftools","tm","wordcloud2","tidytext","igraph","ggraph"))
+
+https://github.com/FoxHound112263/DS-Training-DAFP/raw/master/data/homicidios.txt
+
 c("Norte", "Sur", "Sur", "Norte", "Norte", "Sur", "Centro", "Occidente", "Sur", "Sur", "Norte", "Norte", "Norte", "Sur", "Sur","Sur","Sur", "Centro", "Sur", "Sur")
